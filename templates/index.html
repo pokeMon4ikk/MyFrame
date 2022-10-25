@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+			position: relative;
+			color: black;
+		}
+
+		h3{
+			font-family: Luminari fantasy;
+			font-size: 35px;
+		}
+
+		input {
+			outline: 0;
+			outline-offset: 0;
+		}
+
+		.header {
+			width: 100%;
+			height: 165px;
+			margin-bottom: 20px;
+			background-color: #ffffffbf;
+		}
+
+		.site-logo {
+			display: inline-block;
+			position: absolute;
+			top: 0;
+		}
+
+		.logo{
+			margin-left: 20px;
+		}
+
+		.logo img {
+			margin-top: 10px;
+			border-radius: 7px;
+		}
+
+		.logo .a {
+			width: 100%;
+			height: 100%;
+		}
+
+		.header-menu-list {
+			position: absolute;
+			padding: 20px 40px;
+			display: inline-block;
+			overflow: hidden;
+			margin-left: 450px;
+		}
+
+		.menulist {
+			width: 100%;
+			display: inline-block;
+		}
+
+		.search-module_ {
+			display: inline-block;
+			margin-top: 20px;
+			margin-right: 20px;
+			margin-left: 20px;
+			margin-bottom: 10px;
+			vertical-align: middle;
+		}
+
+		.search_wrapper {
+			background-color: #f7802bb5;
+			border-radius: 13px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		}
+
+		.search_input {
+			width: 850px;
+			height: 35px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			margin-left: 7px;
+			border-radius: 7px;
+			border: 1px solid;
+			border-color: #f7802bb5;
+			font-size: 20px;
+		}
+
+		.search_input:focus {
+			border: 1px solid;
+		}
+
+		.search_btn {
+			font-size: 20px;
+			margin-top: 5px;
+			margin-bottom: 5px;
+			margin-right: 7px;
+			border-radius: 5px;
+			border: 1px solid;
+			border-color: #f7802bb5;
+		}
+
+		.add-menu {
+			margin-left: 30px;
+		}
+
+		.add-menu .active {
+			text-decoration: underline;
+		}
+
+		.pr-links{
+			font-size: 18px;
+			margin-right: 5px;
+			color: #952801;
+			text-decoration: none;
+			font-weight: bold;
+		}
+
+		.pr-links:hover{
+			color: #c79a1b;
+		}
+
+		.content {
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.footer {
+			text-align: center;
+			margin-top: 10px;
+			height: 150px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			background-color: #ffffffbf;
+		}
+
+		.footer-wrapper {
+			height: 150px;
+			text-align: center;
+			padding-left: 136px;
+			padding-right: 136px;
+			color: black;
+			border-top: solid 1px;
+			margin-bottom: 5px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+
+		}
+
+		.text-footer {
+			vertical-align: center;
+			display: inline-block;
+			margin: 5px;
+		}
+
+		.text-footer p {
+			margin: 10px;
+		}
+
+		.text-footer h3 {
+			font-size: 20px;
+			margin: 10px;
+			text-decoration: none;
+		}
+
+		.social-link {
+			 display: inline-block;
+			 margin: 5px;
+		}
+
+		.social-link p {
+			margin: 7px;
+			color: black;
+		}
+
+		.s-link {
+			text-decoration: none;
+		}
+
+		.mail-form {
+			margin: 5px;
+		}
+
+		.popular-literature {
+			padding-left: 200px;
+			padding-right: 200px;
+			margin-bottom: 40px;
+		}
+
+		.popular-literature h3 {
+			margin: 5px;
+			margin-bottom: 20px;
+			background-color: #ffffffbf;
+			color: #952801;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.block {
+			display: inline-block;
+			background-color: #ffd28ecc;
+			border-radius: 7px;
+			width: 220px;
+			vertical-align: top;
+			text-align: center;
+			margin: 10px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			height: 240px;
+		}
+
+		.block img{
+			vertical-align:top;
+			margin-top: 25px;
+
+		}
+
+		.block h4 {
+			margin-top: 10px;
+		}
+
+		.block a {
+			color: black;
+			size: 16px;
+			text-decoration: none;
+			display: block;
+			margin-top: 3px;
+		}
+
+		.block p {
+			margin-bottom: 3px;
+		}
+
+		.block h6{
+			position: relative;
+			display: inline-block;
+			vertical-align: bottom;
+		}
+
+		.stock-literature {
+			padding-left: 200px;
+			padding-right: 200px;
+			margin-bottom: 60px;
+		}
+
+		.stock-literature h3 {
+			margin: 5px;
+			margin-bottom: 20px;
+			font-family: Luminari fantasy;
+			background-color: #ffffffbf;
+			color: #952801;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.recommendation {
+			padding-left: 200px;
+			padding-right: 200px;
+			margin-bottom: 40px;
+		}
+
+		.recommendation h3 {
+			margin: 5px;
+			margin-bottom: 20px;
+			background-color: #ffffffbf;
+			color: #952801;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.advertising-middle img {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 15px;
+		}
+
+		.info h3 {
+			margin: 5px;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="site-logo">
+			<div class="logo">
+				<a href="#">
+					<img alt="" src="#" class="logo-img">
+				</a>
+			</div>
+		</div>
+		<div class="header-menu-list">
+			<div class="menulist">
+				<div class="search-module_">
+					<span class="search">
+						<form>
+							<div class="search_wrapper">
+								<input class="search_input" maxlength="150" placeholder=" Поиск" name="а">
+								<button class="search_btn" type="submit">Найти</button>
+							</div>
+						</form>
+					</span>
+				</div>
+			</div>
+			<div class="add-menu">
+				<a href="#" class="pr-links active">Главная</a>
+				<a href="/about_us/" class="pr-links">О нас</a>
+				<a href="/orders/" class="pr-links">Заказы</a>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="stock-literature">
+			<h3>Акции: </h3>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/alaya.jpg">
+					<h4>Алая чума до Адама</h4>
+					<p>Джек Лондон</p>
+					<h6>399 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/dama.jpg">
+					<h4>Дама с Камелиями</h4>
+					<p>Александр Дюма</p>
+					<h6>299 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/brats.jpg">
+					<h4>Братья Карамазовы</h4>
+					<p>Федор Михайлович Достоевский</p>
+					<h6>499 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/little.jpg">
+					<h4>Маленькая хозяйка большого дома</h4>
+					<p>Джек Лондон</p>
+					<h6>499 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/ducks.jpg">
+					<h4>Утиная охота</h4>
+					<p>Александр Валентинович Вампилов</p>
+					<h6>299 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+				<div class="block">
+					<img alt="" src="static/img/books/sales/master.jpg">
+					<h4>Мастер и Маргарита</h4>
+					<p>Михаил Афанасьевич Булгаков</p>
+					<h6>299 руб</h6>
+					<a href="#">Добавить в корзину</a>
+				</div>
+			</div>
+		</div>
+		<div class="popular-literature">
+			<h3>Популярное</h3>
+			<div class="block">
+				<img alt="" src="static/img/books/anna.jpg">
+				<h4>Анна Каренина</h4>
+				<p>Лев николаевич Толстой</p>
+				<h6>299 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/kap.jpg">
+				<h4>Капитанская дочка</h4>
+				<p>Александр Сергеевич Пушкин</p>
+				<h6>399 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/otsi.jpg">
+				<h4>Отцы и дети</h4>
+				<p>Иван Сергеевич Тургеньев</p>
+				<h6>399 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/prestupleniye.jpg">
+				<h4>Преступление и наказание</h4>
+				<p>Федор Михайлович Достоевский</p>
+				<h6>599 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/war1.jpg">
+				<h4>Война и мир (книга 1)</h4>
+				<p>Лев Николаевич Толстой</p>
+				<h6>399 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/war2.jpg">
+				<h4>Война и мир (книга 2)</h4>
+				<p>Лев Николаевич Толстой</p>
+				<h6>399 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+		</div>
+		<div class="recommendation">
+			<h3>Рекоммендуем лично вам: </h3>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/povest.jpg">
+				<h4>Повесть о настоящем человеке</h4>
+				<p>Борис Николаевич Полевой</p>
+				<h6>199 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/stepnoy.jpg">
+				<h4>Степной волк</h4>
+				<p>Герман Гёссе</p>
+				<h6>699 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/strannik.jpg">
+				<h4>Странник по звездам</h4>
+				<p>Джек Лондон</p>
+				<h6>499 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/winter.jpg">
+				<h4>Зима тревоги нашей</h4>
+				<p>Джон Стейнбек</p>
+				<h6>699 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/wolk.jpg">
+				<h4>Морской волк</h4>
+				<p>Джек Лондон</p>
+				<h6>299 руб</h6>
+				<a href="#">Добавить в корзину</a>
+			</div>
+			<div class="block">
+				<img alt="" src="static/img/books/choice/braslet.jpg">
+				<h4>Гранатовый браслет</h4>
+				<h6>99 руб</h6>
+				<p>Александр Иванович Куприн</p>
+				<a href="#">Добавить в корзину</a>
+			</div>
+		</div>
+	<div class="footer">
+		<div class="footer-wrapper">
+			 <div class="text-footer">
+				<h3>Контакты</h3>
+				<p>pavel.zabrovsiy@bk.ru</p>
+				<p>8-800-555-35-35</p>
+			</div>
+			<div class="text-footer">
+				<h3>Полезная информация</h3>
+				<div class="social-link">
+					<a href="#" class="s-link">
+						<img alt="" src="static/img/social-logo/vk.png">
+						<p>Наш VK</p>
+					</a>
+				</div>
+				<div class="social-link">
+					<a href="#" class="s-link">
+						<img alt="" src="static/img/social-logo/telegram.png">
+						<p> Наш Telegam</p>
+					</a>
+				</div>
+			</div>
+			<div class="text-footer">
+				<h3>Оставайтесь на связи</h3>
+				<p>Подписаться на новости и рассылки</p>
+				<form class="mail-form">
+					<img alt="" src="static/img/social-logo/mail.png">
+					<input type="email" name="email" placeholder=" ваш email">
+					<a href="#"><i class="em" aria-hidden="true"></i></a>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
