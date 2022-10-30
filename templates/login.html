@@ -1,88 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<style type="text/css">
-		body {
-			font-family: sans-serif;
-		}
-
-        h1{
-            font-family: Luminari fantasy;
-            color: #952801;
-            padding-top: 18px;
-        }
-
-		input {
-			outline: 0;
-			outline-offset: 0;
-		}
-
-        .form {
-            width: 300px;
-            margin-top: 20%;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            border-radius: 10px;
-            box-shadow: 10px 10px 30px 10px rgba(141, 141, 141, 0.94);
-        }
-
-        .login_input {
-            margin: 15px;
-            font-size: 18px;
-            width: 220px;
-            border-radius: 10px;
-            border: 0;
-            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
-        }
-
-        .pass_input{
-            margin: 15px;
-            font-size: 18px;
-            width: 220px;
-            border-radius: 10px;
-            border: 0;
-            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
-        }
-
-        .btn{
-            margin: 15px;
-            font-size: 16px;
-            border: 0.5px solid black;
-            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
-        }
-
-        .reg_link{
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-        }
-
-        .reg_link:hover {
-            color: black;
-        }
-
-        .reg_link:visited {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-        }
-
-        .reg {
-            width: 214px;
-            margin-bottom: 18px;
-        }
-        .text {
-            padding: 5px;
-        }
-	</style>
-</head>
-<body>
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_login.html" %}
+{% endblock %}
+{% block body %}
     <div class="form">
         <h1>Войти</h1>
         <div class="form-inputs">
-            <form>
+            <form method="post">
                 <div>
                     <label>
                         <input class="login_input" maxlength="150" placeholder="  Логин" name="login">
@@ -109,5 +33,4 @@
             </a>
         </button>
     </div>
-</body>
-</html>
+{% endblock %}
