@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style type="text/css">
+		body {
+			font-family: sans-serif;
+		}
+
+        h1{
+            font-family: Luminari fantasy;
+            color: #952801;
+            padding-top: 18px;
+        }
+
+		input {
+			outline: 0;
+			outline-offset: 0;
+		}
+
+        .form {
+            width: 300px;
+            margin-top: 20%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 10px 10px 30px 10px rgba(141, 141, 141, 0.94);
+        }
+
+        .login_input {
+            margin: 15px;
+            font-size: 18px;
+            width: 220px;
+            border-radius: 10px;
+            border: 0;
+            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
+        }
+
+        .pass_input{
+            margin: 15px;
+            font-size: 18px;
+            width: 220px;
+            border-radius: 10px;
+            border: 0;
+            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
+        }
+
+        .btn{
+            margin: 15px;
+            font-size: 16px;
+            border: 0.5px solid black;
+            box-shadow: 3px 3px 5px 3px rgba(141, 141, 141, 0.94);
+        }
+
+        .reg_link{
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        .reg_link:hover {
+            color: black;
+        }
+
+        .reg_link:visited {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+        }
+
+        .reg {
+            cursor: pointer;
+        }
+        .text {
+            padding: 5px;
+        }
+        .select{
+            font-size: 16px;
+        }
+	</style>
+</head>
+<body>
+    <div class="form">
+        <h1>Регистрация</h1>
+
+
+        <div class="form-inputs">
+            <form>
+                <div>
+                    <label>
+                        <input class="login_input" maxlength="150" placeholder="  Логин" name="login">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input class="pass_input" maxlength="150" placeholder="  Пароль" name="password">
+                    </label>
+                </div>
+                 <div>
+                    <label>
+                        <input class="pass_input" maxlength="150" placeholder="  Повторите пароль" name="password">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input class="pass_input" maxlength="150" placeholder="  Имя" name="name">
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input class="pass_input" maxlength="150" placeholder="  Фамилия" name="lasname">
+                    </label>
+                </div>
+                <p><label for="location" class="title">Возраст:</label>
+					 <select name="age" id="location" class="select">
+						 <option value="child">до 18</option>
+						 <option value="young">18-25</option>
+						 <option value="middle">25-40</option>
+                         <option value="age">40+</option>
+					 </select></p>
+                <button class="btn reg">
+                    <span class="text">Зарегистрироваться</span>
+                </button>
+            </form>
+            <button class="btn">
+                <a class="reg_link" href="/">
+                    <span class="text">На главную</span>
+                </a>
+            </button>
+            <button class="btn">
+                <a class="reg_link" href="/login/">
+                    <span class="text">Войти</span>
+                </a>
+            </button>
+        </div>
+    </div>
+</body>
+</html>
