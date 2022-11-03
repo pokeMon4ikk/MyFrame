@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
+{% endblock %}
+{% block header %}
+	{% include "header.html" %}
+{% endblock %}
+{% block body %}
+    <h1>Список категорий</h1>
+    <ul>
+        {% for item in objects_list %}
+        <li>
+            {{item.name}}<span>Количество книг: {{item.books_count()}}</span>
+        </li>
+        {% endfor %}
+    </ul>
+	<div>
+		<li><a class="pr-links" href="/books_list/">Список книг</a></li>
+		<li><a class="pr-links" href="/add_book/">Добавить книгу</a></li>
+	</div>
+    <button class="btn">
+        <a class="reg_link" href="/add_category/">
+             <span class="text">Добавить категорию</span>
+        </a>
+    </button>
+    <button class="btn">
+        <a class="reg_link" href="/">
+            <span class="text">назад</span>
+        </a>
+    </button>
+{% endblock %}

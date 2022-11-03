@@ -1,5 +1,5 @@
 from datetime import date
-from views import Index, Orders, AboutUs, Login, Registration
+from views import Index, Orders, AboutUs, Login, Registration, AddBook, AddCategory, CategoryList, BooksList
 
 
 # front controller
@@ -18,5 +18,9 @@ routes = {
     '/orders/': Orders(),
     '/about_us/': AboutUs(),
     '/login/': Login(),
-    '/registration/': Registration()
+    '/registration/': Registration(),
+    '/add_book/': AddBook(),
+    '/books_list/': BooksList(),
+    '/add_category/': AddCategory(),
+    '/category_list/': CategoryList(),
 }
