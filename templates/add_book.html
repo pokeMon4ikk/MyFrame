@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_index.html" %}
+{% endblock %}
+{% block header %}
+	{% include "header.html" %}
+{% endblock %}
+{% block body %}
+    <div>
+        <form method="post">
+            <label>
+                <input type="text" name="name" placeholder="Название">
+            </label>
+            <button type="submit">Добавить и вернуться к списку книг</button>
+        </form>
+    </div>
+    <div>
+        <button class="btn"><a href="/books-list/">назад</a></button>
+    </div>
+{% endblock %}

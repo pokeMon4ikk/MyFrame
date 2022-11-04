@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
+{% endblock %}
+{% block header %}
+	{% include "header.html" %}
+{% endblock %}
+{% block body %}
+<h1>Создание категории</h1>
+<div>
+   <form method="post">
+        <label>
+           <input type="text" name="name" placeholder="Название">
+        </label>
+        <button class="btn" type="submit">
+            <span>Сохранить</span>
+        </button>
+        </form>
+        <button class="btn">
+        <a href="/" class="reg_link">
+            <span>Вернуться на главную</span>
+        </a>
+   </button>
+</div>
+
+{% endblock %}
