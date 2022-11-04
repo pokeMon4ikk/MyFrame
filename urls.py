@@ -1,8 +1,6 @@
 from datetime import date
-from views import Index, Orders, AboutUs, Login, Registration, AddBook, AddCategory, CategoryList, BooksList
 
 
-# front controller
 def secret_front(request):
     request['date'] = date.today()
 
@@ -12,15 +10,3 @@ def other_front(request):
 
 
 fronts = [secret_front, other_front]
-
-routes = {
-    '/': Index(),
-    '/orders/': Orders(),
-    '/about_us/': AboutUs(),
-    '/login/': Login(),
-    '/registration/': Registration(),
-    '/add_book/': AddBook(),
-    '/books_list/': BooksList(),
-    '/add_category/': AddCategory(),
-    '/category_list/': CategoryList(),
-}
