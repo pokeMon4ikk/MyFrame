@@ -1,36 +1,50 @@
 from DousFrame.templator import render
 from patterns.сreational_patterns import Engine, Logger
+from patterns.structural_patterns import AppRoute, Debug
 
 site = Engine()
 logger = Logger('main')
+routes = {}
 
 
+@AppRoute(routes=routes, url='/')
 class Index:
+    @Debug(name='Index')
     def __call__(self, request):
         return '200 OK', render('index.html', objects_list=site.categories)
 
 
+@AppRoute(routes=routes, url='/orders/')
 class Orders:
+    @Debug(name='Order')
     def __call__(self, request):
         return '200 OK', render('orders.html', objects_list=site.categories)
 
 
+@AppRoute(routes=routes, url='/about_us/')
 class AboutUs:
+    @Debug(name='AboutUs')
     def __call__(self, request):
         return '200 OK', render('about_us.html')
 
 
+@AppRoute(routes=routes, url='/login/')
 class Login:
+    @Debug(name='Login')
     def __call__(self, request):
         return '200 OK', render('login.html')
 
 
+@AppRoute(routes=routes, url='/registration/')
 class Registration:
+    @Debug(name='Registration')
     def __call__(self, request):
         return '200 OK', render('registration.html')
 
 
+@AppRoute(routes=routes, url='/books_list/')
 class BooksList:
+    @Debug(name='BooksList')
     def __call__(self, request):
         logger.log('Список книг')
         try:
@@ -43,9 +57,11 @@ class BooksList:
             return '200 OK', 'Empty'
 
 
+@AppRoute(routes=routes, url='/add_book/')
 class AddBook:
     category_id = -1
 
+    @Debug(name='AddBook')
     def __call__(self, request):
         if request['method'] == 'POST':
             data = request['data']
@@ -72,9 +88,10 @@ class AddBook:
                 return '200 OK', 'Empty'
 
 
+@AppRoute(routes=routes, url='/add_category/')
 class AddCategory:
+    @Debug(name='AddCategory')
     def __call__(self, request):
-
         if request['method'] == 'POST':
             data = request['data']
             name = data['name']
@@ -92,7 +109,9 @@ class AddCategory:
                                     categories=categories)
 
 
+@AppRoute(routes=routes, url='/category_list/')
 class CategoryList:
+    @Debug(name='CategoryList')
     def __call__(self, request):
         logger.log('Список категорий')
         return '200 OK', render('category_list.html',

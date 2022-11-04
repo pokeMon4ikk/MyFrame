@@ -1,7 +1,8 @@
 from wsgiref.simple_server import make_server
 
 from DousFrame.main import DousFrame
-from urls import routes, fronts
+from urls import fronts
+from views import routes
 
 
 application = DousFrame(routes, fronts)
