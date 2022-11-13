@@ -1,10 +1,13 @@
 from DousFrame.templator import render
 from patterns.сreational_patterns import Engine, Logger
 from patterns.structural_patterns import AppRoute, Debug
+from patterns.behavioral_patterns import EmailNotifier, SmsNotifier, ListView, CreateView, BaseSerializer
 
 site = Engine()
 logger = Logger('main')
 routes = {}
+email_notifier = EmailNotifier()
+sms_notifier = SmsNotifier()
 
 
 @AppRoute(routes=routes, url='/')
@@ -44,7 +47,6 @@ class Registration:
 
 @AppRoute(routes=routes, url='/books_list/')
 class BooksList:
-    @Debug(name='BooksList')
     def __call__(self, request):
         logger.log('Список книг')
         try:
@@ -61,21 +63,31 @@ class BooksList:
 class AddBook:
     category_id = -1
 
-    @Debug(name='AddBook')
     def __call__(self, request):
         if request['method'] == 'POST':
+
             data = request['data']
+
             name = data['name']
             name = site.decode_value(name)
+
             category = None
             if self.category_id != -1:
+
                 category = site.find_category_by_id(int(self.category_id))
 
                 book = site.create_book('record', name, category)
+
+                book.observers.append(email_notifier)
+                book.observers.append(sms_notifier)
+
                 site.books.append(book)
+
             return '200 OK', render('books_list.html',
                                     objects_list=category.books,
-                                    name=category.name, id=category.id)
+                                    name=category.name,
+                                    id=category.id)
+
         else:
             try:
                 self.category_id = int(request['request_params']['id'])
@@ -102,7 +114,7 @@ class AddCategory:
                 category = site.find_category_by_id(int(category_id))
             new_category = site.create_category(name, category)
             site.categories.append(new_category)
-            return '200 OK', render('index.html', objects_list=site.categories)
+            return '200 OK', render('add_category.html', objects_list=site.categories)
         else:
             categories = site.categories
             return '200 OK', render('add_category.html',
@@ -117,3 +129,46 @@ class CategoryList:
         return '200 OK', render('category_list.html',
                                 objects_list=site.categories)
 
+
+@AppRoute(routes=routes, url='/authors_list/')
+class AuthorListView(ListView):
+    queryset = site.authors
+    template_name = 'authors_list.html'
+
+
+@AppRoute(routes=routes, url='/create_author/')
+class AuthorCreateView(CreateView):
+    template_name = 'create_author.html'
+
+    def create_obj(self, data: dict):
+        name = data['name']
+        name = site.decode_value(name)
+        new_obj = site.create_user("author", name)
+        site.authors.append(new_obj)
+
+
+@AppRoute(routes=routes, url='/add_author/')
+class AddAuthorByBookCreateView(CreateView):
+    template_name = 'add_author.html'
+
+    def get_template(self):
+        context = super().get_context_data()
+        context['books'] = site.books
+        context['authors'] = site.authors
+        return context
+
+    def create_obj(self, data: dict):
+        book_name = data['book_name']
+        book_name = site.decode_value(book_name)
+        book = site.get_book(book_name)
+        author_name = data['author_name']
+        author_name = site.decode_value(author_name)
+        author = site.get_author(author_name)
+        book.add_author(author)
+
+
+@AppRoute(routes=routes, url='/api/')
+class BookApi:
+    @Debug(name='BookApi')
+    def __call__(self, request):
+        return '200 OK', BaseSerializer(site.books).save()

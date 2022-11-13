@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block style %}
 	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
 {% endblock %}
 {% block header %}
 	{% include "header.html" %}
@@ -11,10 +12,16 @@
             <label>
                 <input type="text" name="name" placeholder="Название">
             </label>
-            <button type="submit">Добавить и вернуться к списку книг</button>
+            <button type="submit" class="btn">
+                <span class="text">Добавить</span>
+            </button>
         </form>
     </div>
     <div>
-        <button class="btn"><a href="/books-list/">назад</a></button>
+        <button class="btn">
+            <a class="reg_link" href="/books_list/?id={{id}}">
+                <span class="text">Назад</span>
+            </a>
+        </button>
     </div>
 {% endblock %}

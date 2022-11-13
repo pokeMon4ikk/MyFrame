@@ -12,7 +12,8 @@ class GetRequest:
 
     @staticmethod
     def get_request(environ):
-        get_request = GetRequest.parse_data(environ['QUERY_STRING'])
+        query_string = environ['QUERY_STRING']
+        get_request = GetRequest.parse_data(query_string)
         return get_request
 
 

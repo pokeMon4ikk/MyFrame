@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
+{% endblock %}
+{% block header %}
+	{% include "header.html" %}
+{% endblock %}
+{% block body %}
+    <h1>Добавление автора книге</h1>
+    <form method="post">
+        <label>
+            <select size="3" name="book_name">
+                {% for book in books %}
+                    <option value="{{book.name}}">{{book.name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            <select size="3" name="author_name">
+                {% for author in authors %}
+                    <option value="{{author.name}}">{{author.name}}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <button type="submit">Добавить</button>
+    </form>
+    <button class="btn">
+         <a class="reg_link" href="/create_author/">
+             <span class="text">Создать автора</span>
+        </a>
+    </button>
+    <button class="btn">
+         <a class="reg_link" href="/authors_list/">
+             <span class="text">Список авторов</span>
+        </a>
+    </button>
+
+{% endblock %}
