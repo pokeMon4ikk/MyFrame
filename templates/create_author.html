@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block style %}
+	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
+{% endblock %}
+{% block header %}
+	{% include "header.html" %}
+{% endblock %}
+{% block body %}
+    <div>
+        <h1>Создание автора</h1>
+        <form method="post">
+            <input type="text" name="name" placeholder="Имя">
+            <button type="submit">Сохранить</button>
+        </form>
+    </div>
+    <button class="btn">
+         <a class="reg_link" href="/authors_list/">
+             <span class="text">Список авторов</span>
+        </a>
+    </button>
+    <button class="btn">
+        <a class="reg_link" href="/category_list/">
+            <span class="text">Назад</span>
+        </a>
+    </button>
+{% endblock %}

@@ -7,30 +7,17 @@
 	{% include "header.html" %}
 {% endblock %}
 {% block body %}
-    <h1>Список категорий</h1>
-    <ul>
+    <h1>Список авторов</h1>
+    <div>
         {% for item in objects_list %}
         <li>
             {{item.name}}
-            <span class="text">Количество книг: {{item.books_count()}}</span>
-            <button class="btn">
-                <a class="reg_link" href="/books_list/?id={{item.id}}">
-                    <span class="text">Все</span>
-                </a>
-            </button>
+            {% for author in item.authors %}
+                {{author.name}}
+            {% endfor %}
         </li>
         {% endfor %}
-    </ul>
-    <button class="btn">
-        <a class="reg_link" href="/add_category/">
-             <span class="text">Добавить категорию</span>
-        </a>
-    </button>
-    <button class="btn">
-         <a class="reg_link" href="/authors_list/">
-             <span class="text">Список авторов</span>
-        </a>
-    </button>
+    </div>
     <button class="btn">
          <a class="reg_link" href="/create_author/">
              <span class="text">Создать автора</span>
@@ -42,8 +29,10 @@
         </a>
     </button>
     <button class="btn">
-        <a class="reg_link" href="/">
+        <a class="reg_link" href="/category_list/">
             <span class="text">Назад</span>
         </a>
     </button>
+
+
 {% endblock %}

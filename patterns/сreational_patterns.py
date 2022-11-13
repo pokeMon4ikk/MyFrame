@@ -1,28 +1,32 @@
 from copy import deepcopy
 from quopri import decodestring
+from patterns.behavioral_patterns import Subject, FileWriter
 
 
 class User:
-    pass
+    def __init__(self, name):
+        self.name = name
 
 
 class Client(User):
     pass
 
 
-class Admin(User):
-    pass
+class Author(User):
+    def __init__(self, name):
+        self.books = []
+        super().__init__(name)
 
 
 class UserCreator:
     types = {
         'client': Client,
-        'Admin': Admin
+        'author': Author
     }
 
     @classmethod
-    def create(cls, type_):
-        return cls.types[type_]()
+    def create(cls, type_, name):
+        return cls.types[type_](name)
 
 
 class BookPrototype:
@@ -30,11 +34,21 @@ class BookPrototype:
         return deepcopy(self)
 
 
-class Book(BookPrototype):
+class Book(BookPrototype, Subject):
     def __init__(self, name, category):
         self.name = name
         self.category = category
         self.category.books.append(self)
+        self.authors = []
+        super().__init__()
+
+    def __getitem__(self, item):
+        return self.authors[item]
+
+    def add_author(self, author: Author):
+        self.authors.append(author)
+        author.books.append(self)
+        self.notify()
 
 
 class Fairytale(Book):
@@ -76,21 +90,17 @@ class Category:
 class Engine:
     def __init__(self):
         self.clients = []
-        self.admins = []
+        self.authors = []
         self.books = []
         self.categories = []
 
     @staticmethod
-    def create_user(type_):
-        return UserCreator.create(type_)
+    def create_user(type_, name):
+        return UserCreator.create(type_, name)
 
     @staticmethod
     def create_category(name, category=None):
         return Category(name, category)
-
-    @staticmethod
-    def create_book(type_, name, category):
-        return BookCreator.create(type_, name, category)
 
     def find_category_by_id(self, id):
         for item in self.categories:
@@ -99,11 +109,20 @@ class Engine:
                 return item
         raise Exception(f'Нет категории с id = {id}')
 
+    @staticmethod
+    def create_book(type_, name, category):
+        return BookCreator.create(type_, name, category)
+
     def get_book(self, name):
         for item in self.books:
             if item.name == name:
                 return item
         return None
+
+    def get_author(self, name) -> Author:
+        for item in self.authors:
+            if item.name == name:
+                return item
 
     @staticmethod
     def decode_value(val):
@@ -133,9 +152,10 @@ class SingletonByName(type):
 
 class Logger(metaclass=SingletonByName):
 
-    def __init__(self, name):
+    def __init__(self, name, writer=FileWriter()):
         self.name = name
+        self.writer = writer
 
-    @staticmethod
-    def log(text):
-        print('log--->', text)
+    def log(self, text):
+        text = f'log---> {text}'
+        self.writer.write(text)

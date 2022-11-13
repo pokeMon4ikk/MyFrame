@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block style %}
 	{% include "styles_index.html" %}
+    {% include "styles_login.html" %}
 {% endblock %}
 {% block header %}
 	{% include "header.html" %}
 {% endblock %}
 {% block body %}
-    <div>
-        <a href="/add-book/?id={{id}}">Добавить книгу</a>
-        <br>
-        <h1>Список книг в категории "{{name}}"</h1>
-    </div>
-    <div>
-        <button class="btn">
-            <a href="/" class="reg_link">
-                <span>На главную</span>
-            </a>
-        </button>
-    </div>
+    <h1>Список книг в категории "{{name}}"</h1>
+    <button class="btn">
+        <a class="reg_link" href="/add_book/?id={{id}}">
+             <span class="text">Добавить книгу</span>
+        </a>
+    </button>
+    <button class="btn">
+        <a href="/category_list/" class="reg_link">
+            <span>Назад</span>
+        </a>
+    </button>
 {% endblock %}
