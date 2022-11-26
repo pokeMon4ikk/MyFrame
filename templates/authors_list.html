@@ -11,10 +11,8 @@
     <div>
         {% for item in objects_list %}
         <li>
-            {{item.name}}
-            {% for author in item.authors %}
-                {{author.name}}
-            {% endfor %}
+            {{item.first_name}}
+            {{item.last_name}}
         </li>
         {% endfor %}
     </div>
