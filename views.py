@@ -1,5 +1,6 @@
 from DousFrame.templator import render
-from patterns.сreational_patterns import Engine, Logger
+from patterns.architectural_system_pattern_unit_of_work import UnitOfWork
+from patterns.сreational_patterns import Engine, Logger, MapperRegistry
 from patterns.structural_patterns import AppRoute, Debug
 from patterns.behavioral_patterns import EmailNotifier, SmsNotifier, ListView, CreateView, BaseSerializer
 
@@ -8,6 +9,8 @@ logger = Logger('main')
 routes = {}
 email_notifier = EmailNotifier()
 sms_notifier = SmsNotifier()
+UnitOfWork.new_current()
+UnitOfWork.get_current().set_mapper_registry(MapperRegistry)
 
 
 @AppRoute(routes=routes, url='/')
@@ -132,8 +135,11 @@ class CategoryList:
 
 @AppRoute(routes=routes, url='/authors_list/')
 class AuthorListView(ListView):
-    queryset = site.authors
     template_name = 'authors_list.html'
+
+    def get_queryset(self):
+        mapper = MapperRegistry.get_current_mapper('author')
+        return mapper.all()
 
 
 @AppRoute(routes=routes, url='/create_author/')
@@ -141,10 +147,16 @@ class AuthorCreateView(CreateView):
     template_name = 'create_author.html'
 
     def create_obj(self, data: dict):
-        name = data['name']
-        name = site.decode_value(name)
-        new_obj = site.create_user("author", name)
+        first_name = data['first_name']
+        last_name = data['last_name']
+        short_info = data['short_info']
+        first_name = site.decode_value(first_name)
+        last_name = site.decode_value(last_name)
+        short_info = site.decode_value(short_info)
+        new_obj = site.create_user("author", first_name, last_name, short_info)
         site.authors.append(new_obj)
+        new_obj.mark_new()
+        UnitOfWork.get_current().commit()
 
 
 @AppRoute(routes=routes, url='/add_author/')

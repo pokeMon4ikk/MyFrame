@@ -19,7 +19,7 @@
         <label>
             <select size="3" name="author_name">
                 {% for author in authors %}
-                    <option value="{{author.name}}">{{author.name}}</option>
+                    <option value="{{author.first_name}}">{{author.first_name}}</option>
                 {% endfor %}
             </select>
         </label>
